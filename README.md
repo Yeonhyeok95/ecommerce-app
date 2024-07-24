@@ -6,7 +6,8 @@ First, run the development server:
 
 ```bash
 npm i
-npm react-hook-form
+npm i react-hook-form
+npm i react-icons
 
 npm run dev
 # or
