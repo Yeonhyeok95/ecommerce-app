@@ -1,6 +1,8 @@
-This is an E-commerce application based on Next.js 14.
+This is an E-commerce application based on `Next.js 14` / `Spring Boot 3.3.2`
 
-## Getting Started
+# front-app
+
+### Getting Started
 
 First, run the development server:
 
@@ -18,7 +20,7 @@ pnpm dev
 bun dev
 ```
 
-## Tech stack
+### Tech stack
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [Next.js](https://nextjs.org)
@@ -28,6 +30,10 @@ bun dev
 - Redux
 - [tRPC](https://trpc.io)
 
-## Deploy
+# back-app
 
-### vercel link
+### Getting Started
+
+# Deploy
+
+# vercel link
