@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service;
+package com.goldoogi.back_app.service.crawlers;
 
 import java.io.IOException;
 
@@ -14,9 +14,8 @@ import com.goldoogi.back_app.entity.PostEntity;
 import com.goldoogi.back_app.repository.PostRepository;
 
 @Service
-public class DcInsideScrapper {
-    private final String URL = "https://gall.dcinside.com/board/lists/?id=dcbest";
-    private final String URL_TEST_FREQUENT = "https://gall.dcinside.com/board/lists/?id=baseball_new11";
+public class RedditScrapper {
+    private final String URL = "https://www.reddit.com/r/funny/";
 
     @Autowired
     private PostRepository postRepository;
@@ -24,18 +23,19 @@ public class DcInsideScrapper {
     @Autowired
     private TelegramBot telegramBot;
 
-    @Scheduled(fixedRate = 30000)
+    // @Scheduled(fixedRate = 10000)
     public void checkNewPosts() {
-        System.out.println("Webcrawling has started!");
+        System.out.println("Reddit is being scrapped!");
         try {
             Document doc = Jsoup.connect(URL).get();
-            Elements posts = doc.select(".ub-content").select(".us-post");
+            Elements posts = doc.select("article[aria-label]");
+            System.out.println(posts.toString());
 
             for (Element post : posts) {
-                String postId = post.attr("data-no");
+                String postId = post.select("shreddit-post").attr("id");
                 if (!postRepository.existsByPostId(postId)) {
-                    String postTitle = post.select(".ub-word").text();
-                    String postUrl = "https://gall.dcinside.com" + post.select(".ub-word a").attr("href");
+                    String postTitle = post.select("shreddit-post").attr("post-title");
+                    String postUrl = post.select("shreddit-post").attr("content-href");
 
                     PostEntity newPost = new PostEntity();
                     newPost.setPostId(postId);
@@ -43,13 +43,14 @@ public class DcInsideScrapper {
                     newPost.setUrl(postUrl);
                     postRepository.save(newPost);
 
+                    // send message through telegram bot
                     telegramBot.notifyNewPost(postTitle, postUrl);
                 }
             }
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
-
-
 }

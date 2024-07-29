@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service;
+package com.goldoogi.back_app.service.crawlers;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class TelegramBotInitializer {
             for (UserEntity eachUser : users) {
                 System.out.println(eachUser.getId() + ": " + eachUser.getFirstName());
             }
+            System.out.println();
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

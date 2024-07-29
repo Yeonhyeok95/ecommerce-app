@@ -1,6 +1,7 @@
 package com.goldoogi.back_app.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,10 +17,10 @@ import lombok.Setter;
 @Setter
 @Table(name = "posts")
 public class PostEntity {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(unique = true, nullable = false)
     private String postId;

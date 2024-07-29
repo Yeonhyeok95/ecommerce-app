@@ -1,6 +1,5 @@
-package com.goldoogi.back_app.service;
+package com.goldoogi.back_app.service.crawlers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import com.goldoogi.back_app.repository.UserRepository;
 import lombok.Getter;
 import lombok.Setter;
 
-@Component
+@Component("TelegramBot")
 @Setter
 @Getter
 public class TelegramBot extends TelegramLongPollingBot {
