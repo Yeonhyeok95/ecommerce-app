@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-import com.goldoogi.back_app.entity.UserEntity;
+import com.goldoogi.back_app.entity.DCUserEntity;
 
 @Component
 public class TelegramBotInitializer {
@@ -26,8 +26,8 @@ public class TelegramBotInitializer {
             botsApi.registerBot(telegramBot);
             System.out.println("TelegramBot is initiating!");
             System.out.println("registered users so far:");
-            List<UserEntity> users = telegramBot.getUserRepository().findAll();
-            for (UserEntity eachUser : users) {
+            List<DCUserEntity> users = telegramBot.getDcUserRepository().findAll();
+            for (DCUserEntity eachUser : users) {
                 System.out.println(eachUser.getId() + ": " + eachUser.getFirstName());
             }
             System.out.println();

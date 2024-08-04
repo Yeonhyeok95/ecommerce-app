@@ -1,27 +1,38 @@
 package com.goldoogi.back_app.entity;
 
-import jakarta.persistence.Column;
+import com.goldoogi.back_app.dto.request.auth.SignUpRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Setter
 @Getter
-@Table(name = "users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity(name = "board_user")
+@Table(name = "board_user")
 public class UserEntity {
     
     @Id
-    private Long id;
+    private String email;
+    private String password;
+    private String nickname;
+    private String telNumber;
+    private String address;
+    private String addressDetail;
+    private String profileImage;
+    private boolean agreedPersonal;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "user_name")
-    private String userName;
+    public UserEntity(SignUpRequestDto dto) {
+        this.email = dto.getEmail();
+        this.password = dto.getPassword();
+        this.nickname = dto.getNickname();
+        this.telNumber = dto.getTelNumber();
+        this.address = dto.getAddress();
+        this.addressDetail = dto.getAddressDetail();
+        this.agreedPersonal = dto.getAgreedPersonal();
+    }
 }

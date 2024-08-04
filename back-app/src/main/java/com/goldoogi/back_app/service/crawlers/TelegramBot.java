@@ -11,8 +11,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import com.goldoogi.back_app.entity.UserEntity;
-import com.goldoogi.back_app.repository.UserRepository;
+import com.goldoogi.back_app.entity.DCUserEntity;
+import com.goldoogi.back_app.repository.DCUserRepository;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,22 +29,22 @@ public class TelegramBot extends TelegramLongPollingBot {
     private String chatId;
 
     @Autowired
-    private UserRepository userRepository;
+    private DCUserRepository dcUserRepository;
     
     @Override
     public void onUpdateReceived(Update update) {
         var msg = update.getMessage();
         User user = msg.getFrom();
         if (msg.getText().equals("/register")) {
-            UserEntity newUser = new UserEntity();
+            DCUserEntity newUser = new DCUserEntity();
             newUser.setId(user.getId());
             newUser.setFirstName(user.getFirstName());
             newUser.setLastName(user.getLastName());
-            userRepository.save(newUser);
+            dcUserRepository.save(newUser);
 
             System.out.println("registered users:");
-            List<UserEntity> users = userRepository.findAll();
-            for (UserEntity eachUser : users) {
+            List<DCUserEntity> users = dcUserRepository.findAll();
+            for (DCUserEntity eachUser : users) {
                 System.out.println(eachUser.getId() + ": " + eachUser.getFirstName());
             }
 
@@ -55,11 +55,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         System.out.println(user.getFirstName() + " wrote " + msg.getText());
     }
     
-    void notifyNewPost(String title, String url) {
+    public void notifyNewPost(String title, String url) {
         String message = "New Post has posted: " + title + "\n" + url;
-        List<UserEntity> users = userRepository.findAll();
-        for (UserEntity eachUser : users) {
-            sendMessage(eachUser.getId(), message);
+        List<DCUserEntity> dcUsers = dcUserRepository.findAll();
+        for (DCUserEntity eachDcUser : dcUsers) {
+            sendMessage(eachDcUser.getId(), message);
         }
     }
 

@@ -47,14 +47,14 @@ const Navbar = () => {
               ) : (
                 <>
                   <Link
-                    href="/api/auth/logout"
+                    href="/sign-up"
                     className="px-2 py-1 text-sm sm:px-6 sm:py-3 text-center align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   >
                     Sign Up
                   </Link>
 
                   <Link
-                    href="/api/auth/login"
+                    href="/sign-in"
                     className="px-2 py-1 text-sm sm:px-6 sm:py-3 text-center align-middle transition-all rounded-lg select-none hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   >
                     Login

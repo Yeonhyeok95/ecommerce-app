@@ -1,5 +1,9 @@
 export interface FormValues {
-    username: string;
-    email: string;
-    password: string;
-  }
+  email: string;
+  password: string;
+  nickname?: string;
+  telNumber?: string;
+  address?: string;
+  addressDetail?: string;
+  agreedPersonal?: boolean;
+}

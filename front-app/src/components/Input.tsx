@@ -3,7 +3,8 @@ import { FieldErrors, Path, UseFormRegister } from "react-hook-form";
 import { FormValues } from "../../types/next-auth";
 
 interface InputProps {
-  label: Path<FormValues>;
+  inputValue: Path<FormValues>;
+  label: string;
   register: UseFormRegister<FormValues>;
   placeholder: string;
   labelClassName?: string;
@@ -12,6 +13,7 @@ interface InputProps {
 }
 
 const Input = ({
+  inputValue: inputValue,
   label,
   register,
   placeholder,
@@ -34,17 +36,29 @@ const Input = ({
       message:
         "Password must be minimum 8 characters, at least one letter, one number and one special character.",
     },
-    username: {
-      value: /^[a-zA-Z ]*$/,
-      message: "Only alphabets and space can be accepted.",
+    nickname: {
+      value: /^[A-Za-z_]+$/,
+      message: "Only alphabets and underscore can be accepted.",
     },
+    telNumber: {
+      value: /^(\+61|0)4\d{8,10}$/,
+      message: "Mobile numbers should be 10 ~ 12 characters.",
+    },
+    address: {
+      value: /^[a-zA-Z0-9 ]*$/,
+      message: "Only alphabets, numbers and space can be accepted.",
+    },
+    addressDetail: {
+      value: /^[a-zA-Z0-9 ]*$/,
+      message: "Only alphabets, numbers and space can be accepted.",
+    }
   };
 
-  function validator(label: string) {
-    if (inputPattern[label]) {
+  function validator(inputValue: string) {
+    if (inputPattern[inputValue]) {
       return {
         required: true,
-        pattern: inputPattern[label],
+        pattern: inputPattern[inputValue],
       };
     }
   }
@@ -56,11 +70,11 @@ const Input = ({
       </label>
       <input
         className={cn(defaultInputClassName, inputClassName)}
-        {...register(label, validator(label))}
+        {...register(inputValue, validator(inputValue))}
         placeholder={placeholder}
       />
-      {errors?.[label]?.message && (
-        <p className="text-red-500 text-xs mb-2">{errors[label].message}</p>
+      {errors?.[inputValue]?.message && (
+        <p className="text-red-500 text-xs mb-2">{errors[inputValue].message}</p>
       )}
     </>
   );

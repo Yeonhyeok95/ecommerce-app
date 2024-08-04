@@ -24,7 +24,7 @@ public class DcInsideScrapper {
     @Autowired
     private TelegramBot telegramBot;
 
-    @Scheduled(fixedRate = 30000)
+    // @Scheduled(fixedRate = 30000)
     public void checkNewPosts() {
         System.out.println("Webcrawling has started!");
 
