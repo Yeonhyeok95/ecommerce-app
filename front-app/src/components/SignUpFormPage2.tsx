@@ -1,7 +1,7 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import { FormValues } from "../../types/next-auth";
 import Input from "./Input";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "./Button";
 import { CiCircleCheck } from "react-icons/ci";
 
@@ -17,12 +17,46 @@ const SignUpFormPage2: FC<SignUpFormPage2Props> = ({ formData, setFormData }: Si
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = (data: FormValues) => {
-    setFormData((prev) => {
-      const updatedFormData = { ...prev, ...data };
-      console.log("Final Form Data:", updatedFormData);
-      return updatedFormData;
-    });
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const updatedFormData = { ...formData, ...data };
+    setFormData(updatedFormData);
+
+    const response = await fetch("http://localhost:8080/api/v1/auth/sign-up", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedFormData)
+    })
+
+    if (response.ok) {
+      console.log(updatedFormData)
+      alert("Sign-up successful!");
+    } else {
+      console.log(formData)
+      alert("Sign-up failed. Please try again.")
+    }
+
+    // setFormData((prev) => {
+    //   const updatedFormData = { ...prev, ...data };
+    //   console.log("Final Form Data:", updatedFormData);
+    //   return updatedFormData;
+    // });
+
+    // const response = await fetch("http://localhost:8080/api/v1/auth/sign-up", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData)
+    // })
+  
+    // if (response.ok) {
+    //   console.log(formData)
+    //   alert("Sign-up successful!");
+    // } else {
+    //   alert("Sign-up failed. Please try again.")
+    // }
   };
 
   const onAgreedPersonalClickHandler = () => {

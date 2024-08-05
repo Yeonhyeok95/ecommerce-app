@@ -48,6 +48,7 @@ public class AuthServiceImpl implements AuthService {
 
             UserEntity userEntity = new UserEntity(dto);
             userRepository.save(userEntity);
+            
 
         } catch (Exception e) {
             e.printStackTrace();

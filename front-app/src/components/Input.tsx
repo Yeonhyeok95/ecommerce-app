@@ -13,7 +13,7 @@ interface InputProps {
 }
 
 const Input = ({
-  inputValue: inputValue,
+  inputValue,
   label,
   register,
   placeholder,
@@ -45,12 +45,12 @@ const Input = ({
       message: "Mobile numbers should be 10 ~ 12 characters.",
     },
     address: {
-      value: /^[a-zA-Z0-9 ]*$/,
-      message: "Only alphabets, numbers and space can be accepted.",
+      value: /^[a-zA-Z0-9, ]*$/,
+      message: "Only alphabets, numbers, comma and space can be accepted.",
     },
     addressDetail: {
-      value: /^[a-zA-Z0-9 ]*$/,
-      message: "Only alphabets, numbers and space can be accepted.",
+      value: /^[a-zA-Z0-9, ]*$/,
+      message: "Only alphabets, numbers, comma and space can be accepted.",
     }
   };
 
@@ -65,7 +65,7 @@ const Input = ({
 
   return (
     <>
-      <label className={cn(defaultLabelClassName, labelClassName)}>
+      <label htmlFor={inputValue} className={cn(defaultLabelClassName, labelClassName)}>
         {label}
       </label>
       <input
