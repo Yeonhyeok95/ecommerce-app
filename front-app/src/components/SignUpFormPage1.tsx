@@ -1,12 +1,12 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "./Button";
 import Input from "./Input";
-import { FormValues } from "../../types/next-auth";
+import { SignUpFormValues } from "../types/auth/signUpFormValues";
 import { Dispatch, FC, SetStateAction } from "react";
 
 interface SignUpFormPage1Props {
-  formData: FormValues;
-  setFormData: Dispatch<SetStateAction<FormValues>>;
+  formData: SignUpFormValues;
+  setFormData: Dispatch<SetStateAction<SignUpFormValues>>;
   onNext: () => void;
 }
 
@@ -15,10 +15,10 @@ const SignUpFormPage1: FC<SignUpFormPage1Props> = ({ formData, setFormData, onNe
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<SignUpFormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    setFormData((prev: FormValues) => ({ ...prev, ...data }));
+  const onSubmit: SubmitHandler<SignUpFormValues> = (data) => {
+    setFormData((prev: SignUpFormValues) => ({ ...prev, ...data }));
     alert(JSON.stringify(data));
     onNext();
   };

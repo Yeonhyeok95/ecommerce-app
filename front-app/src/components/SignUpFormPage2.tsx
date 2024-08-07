@@ -1,13 +1,13 @@
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
-import { FormValues } from "../../types/next-auth";
+import { SignUpFormValues } from "../types/auth/signUpFormValues";
 import Input from "./Input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "./Button";
 import { CiCircleCheck } from "react-icons/ci";
 
 interface SignUpFormPage2Props {
-  formData: FormValues;
-  setFormData: Dispatch<SetStateAction<FormValues>>;
+  formData: SignUpFormValues;
+  setFormData: Dispatch<SetStateAction<SignUpFormValues>>;
 }
 
 const SignUpFormPage2: FC<SignUpFormPage2Props> = ({ formData, setFormData }: SignUpFormPage2Props) => {
@@ -15,9 +15,9 @@ const SignUpFormPage2: FC<SignUpFormPage2Props> = ({ formData, setFormData }: Si
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>();
+  } = useForm<SignUpFormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpFormValues> = async (data) => {
     const updatedFormData = { ...formData, ...data };
     setFormData(updatedFormData);
 
@@ -26,15 +26,15 @@ const SignUpFormPage2: FC<SignUpFormPage2Props> = ({ formData, setFormData }: Si
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedFormData)
-    })
+      body: JSON.stringify(updatedFormData),
+    });
 
     if (response.ok) {
-      console.log(updatedFormData)
+      console.log(updatedFormData);
       alert("Sign-up successful!");
     } else {
-      console.log(formData)
-      alert("Sign-up failed. Please try again.")
+      console.log(formData);
+      alert("Sign-up failed. Please try again.");
     }
 
     // setFormData((prev) => {
@@ -50,7 +50,7 @@ const SignUpFormPage2: FC<SignUpFormPage2Props> = ({ formData, setFormData }: Si
     //   },
     //   body: JSON.stringify(formData)
     // })
-  
+
     // if (response.ok) {
     //   console.log(formData)
     //   alert("Sign-up successful!");
@@ -65,12 +65,46 @@ const SignUpFormPage2: FC<SignUpFormPage2Props> = ({ formData, setFormData }: Si
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
-      <Input register={register} label="Nickname" placeholder="nickname" inputValue="nickname" labelClassName="" inputClassName="" errors={errors} />
-      <Input register={register} label="Phone Number" placeholder="010-1234-5678" inputValue="telNumber" labelClassName="" inputClassName="" errors={errors} />
-      <Input register={register} label="Address" placeholder="Address" inputValue="address" labelClassName="" inputClassName="" errors={errors} />
-      <Input register={register} label="Address Detail" placeholder="Address Detail" inputValue="addressDetail" labelClassName="" inputClassName="" errors={errors} />
-      <div className="flex gap-1.5 items-center text-left cursor-pointer" onClick={onAgreedPersonalClickHandler} >
-        <CiCircleCheck className={`${formData.agreedPersonal ? "text-primary" : "text-primary-foreground"} h-5 w-5 shrink-0 `} />
+      <Input
+        register={register}
+        label="Nickname"
+        placeholder="nickname"
+        inputValue="nickname"
+        labelClassName=""
+        inputClassName=""
+        errors={errors}
+      />
+      <Input
+        register={register}
+        label="Phone Number"
+        placeholder="010-1234-5678"
+        inputValue="telNumber"
+        labelClassName=""
+        inputClassName=""
+        errors={errors}
+      />
+      <Input
+        register={register}
+        label="Address"
+        placeholder="Address"
+        inputValue="address"
+        labelClassName=""
+        inputClassName=""
+        errors={errors}
+      />
+      <Input
+        register={register}
+        label="Address Detail"
+        placeholder="Address Detail"
+        inputValue="addressDetail"
+        labelClassName=""
+        inputClassName=""
+        errors={errors}
+      />
+      <div className="flex gap-1.5 items-center text-left cursor-pointer" onClick={onAgreedPersonalClickHandler}>
+        <CiCircleCheck
+          className={`${formData.agreedPersonal ? "text-primary" : "text-primary-foreground"} h-5 w-5 shrink-0 `}
+        />
         {`${formData.agreedPersonal ? "Registered!" : "Register to get fun posts!"}`}
       </div>
       <Button type="submit" color="primary" size="lg">

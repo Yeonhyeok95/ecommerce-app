@@ -13,14 +13,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
-const Button = ({
-  type,
-  color,
-  size,
-  className,
-  onClick,
-  children,
-}: ButtonProps) => {
+const Button = ({ type, color, size, className, onClick, children }: ButtonProps) => {
   let colorClassName = "";
   let sizeClassName = "";
   let additionalClassName = className;
@@ -28,14 +21,12 @@ const Button = ({
   switch (color) {
     case "primary":
       {
-        colorClassName =
-          "text-white hover:bg-primary/80 bg-primary focus:ring-4 focus:ring-primary-300 rounded-lg focus:outline-none";
+        colorClassName = "text-white hover:bg-primary/80 bg-primary focus:ring-2 focus:ring-primary-300 rounded-lg focus:outline-none";
       }
       break;
     case "auxilary":
       {
-        colorClassName =
-          "text-white bg-blue-400 hover:bg-blue-400/80 focus:ring-4 focus:ring-red-300 rounded-lg focus:outline-none";
+        colorClassName = "text-white bg-blue-400 hover:bg-blue-400/80 focus:ring-2 focus:ring-red-300 rounded-lg focus:outline-none";
       }
       break;
   }
@@ -55,11 +46,7 @@ const Button = ({
   }
 
   return (
-    <button
-      type={type ? type : "submit"}
-      className={cn(colorClassName, sizeClassName, additionalClassName)}
-      onClick={onClick}
-    >
+    <button type={type ? type : "button"} className={cn(colorClassName, sizeClassName, additionalClassName)} onClick={onClick}>
       {children}
     </button>
   );
