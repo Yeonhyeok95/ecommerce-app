@@ -28,7 +28,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public ResponseEntity<? super SignUpResponseDto> signUp(SignUpRequestDto dto) {
-        System.out.println("Auth Sign Up impl started!");
         try {
             String email = dto.getEmail();
             boolean existedEmail = userRepository.existsByEmail(email);
@@ -41,6 +40,7 @@ public class AuthServiceImpl implements AuthService {
             String telNumber = dto.getTelNumber();
             boolean existedTelNumber = userRepository.existsByTelNumber(telNumber);
             if (existedTelNumber) return SignUpResponseDto.duplicatedTelNumber();
+
 
             String password = dto.getPassword();
             String encodedPassword = passwordEncoder.encode(password);
