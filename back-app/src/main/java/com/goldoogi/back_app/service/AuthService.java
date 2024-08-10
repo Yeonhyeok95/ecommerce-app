@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service.auth;
+package com.goldoogi.back_app.service;
 
 import org.springframework.http.ResponseEntity;
 

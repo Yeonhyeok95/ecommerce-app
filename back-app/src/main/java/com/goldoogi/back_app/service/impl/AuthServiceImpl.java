@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service.auth.impl;
+package com.goldoogi.back_app.service.impl;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +13,7 @@ import com.goldoogi.back_app.dto.response.auth.SignUpResponseDto;
 import com.goldoogi.back_app.entity.UserEntity;
 import com.goldoogi.back_app.provider.JwtProvider;
 import com.goldoogi.back_app.repository.UserRepository;
-import com.goldoogi.back_app.service.auth.AuthService;
+import com.goldoogi.back_app.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
 

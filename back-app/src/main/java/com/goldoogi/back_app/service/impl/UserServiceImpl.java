@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service.user.impl;
+package com.goldoogi.back_app.service.impl;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -7,7 +7,7 @@ import com.goldoogi.back_app.dto.response.ResponseDto;
 import com.goldoogi.back_app.dto.response.user.GetSignInUserResponseDto;
 import com.goldoogi.back_app.entity.UserEntity;
 import com.goldoogi.back_app.repository.UserRepository;
-import com.goldoogi.back_app.service.user.UserService;
+import com.goldoogi.back_app.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 

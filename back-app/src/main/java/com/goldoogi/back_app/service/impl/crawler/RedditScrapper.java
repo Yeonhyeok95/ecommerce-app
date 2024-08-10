@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service.crawlers;
+package com.goldoogi.back_app.service.impl.crawler;
 
 import java.io.IOException;
 

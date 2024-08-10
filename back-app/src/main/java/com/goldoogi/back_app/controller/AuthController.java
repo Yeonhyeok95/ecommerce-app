@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.goldoogi.back_app.dto.request.auth.SignInRequestDto;
 import com.goldoogi.back_app.dto.request.auth.SignUpRequestDto;
 import com.goldoogi.back_app.dto.response.auth.SignUpResponseDto;
+import com.goldoogi.back_app.service.AuthService;
 import com.goldoogi.back_app.dto.response.auth.SignInResponseDto;
-import com.goldoogi.back_app.service.auth.AuthService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

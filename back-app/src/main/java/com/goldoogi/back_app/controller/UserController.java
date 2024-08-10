@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.goldoogi.back_app.service.user.UserService;
 import com.goldoogi.back_app.dto.response.user.GetSignInUserResponseDto;
+import com.goldoogi.back_app.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -15,8 +15,8 @@ import io.jsonwebtoken.Jwts;
 @Component
 public class JwtProvider {
 
-    @Value("${secret-key}")
-    private String secretKey;
+    // @Value("${secret-key}")
+    // private String secretKey;
     SecretKey key = Jwts.SIG.HS256.key().build();
 
     public String create(String email) {

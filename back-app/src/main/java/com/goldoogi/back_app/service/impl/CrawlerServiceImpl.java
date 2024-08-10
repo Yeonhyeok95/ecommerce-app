@@ -1,4 +1,4 @@
-package com.goldoogi.back_app.service.crawlers.impl;
+package com.goldoogi.back_app.service.impl;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 
 import com.goldoogi.back_app.entity.PostEntity;
 import com.goldoogi.back_app.repository.PostRepository;
-import com.goldoogi.back_app.service.crawlers.CrawlerService;
-import com.goldoogi.back_app.service.crawlers.ScraperType;
-import com.goldoogi.back_app.service.crawlers.TelegramBot;
+import com.goldoogi.back_app.service.CrawlerService;
+import com.goldoogi.back_app.service.impl.crawler.ScraperType;
+import com.goldoogi.back_app.service.impl.crawler.TelegramBot;
 
 @Service
 public class CrawlerServiceImpl implements CrawlerService {

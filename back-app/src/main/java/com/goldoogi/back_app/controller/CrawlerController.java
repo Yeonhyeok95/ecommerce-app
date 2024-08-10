@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.goldoogi.back_app.service.crawlers.CrawlerService;
-import com.goldoogi.back_app.service.crawlers.ScraperType;
+import com.goldoogi.back_app.service.CrawlerService;
+import com.goldoogi.back_app.service.impl.crawler.ScraperType;
 
 import lombok.RequiredArgsConstructor;
 
