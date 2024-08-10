@@ -41,7 +41,6 @@ public class AuthServiceImpl implements AuthService {
             boolean existedTelNumber = userRepository.existsByTelNumber(telNumber);
             if (existedTelNumber) return SignUpResponseDto.duplicatedTelNumber();
 
-
             String password = dto.getPassword();
             String encodedPassword = passwordEncoder.encode(password);
             dto.setPassword(encodedPassword);

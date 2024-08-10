@@ -1,5 +1,5 @@
 import React, { FormEvent, ReactElement, useState } from "react";
-import useMultiStepForm from "../../hooks/useMultiStepForm";
+import useMultiStepForm from "../../../hooks/useMultiStepForm";
 import Button from "../../Button";
 import SignUpPage1 from "./SignUpPage1";
 import SignUpPage2 from "./SignUpPage2";
@@ -36,13 +36,13 @@ const SignUpForm = () => {
         {currentStepIndex + 1} / {steps.length}
       </div>
       {step}
-      <div className="mt-1 flex gap-1 justify-end">
+      <div className="mt-5 flex gap-1 justify-center">
         {!isFirstStep && (
           <Button onClick={back} color="primary" size="sm">
             Back
           </Button>
         )}
-        <Button type="submit" color={"primary"} size={"sm"}>
+        <Button type="submit" color="primary" size="sm">
           {isLastStep ? "Finish" : "Next"}
         </Button>
       </div>
